@@ -88,7 +88,7 @@ public class Login extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				// Captura os dados digitados pelo usuário
-				String usuario = txtUsuario.getText();
+				String usuario = txtUsuario.getText().trim();
 				String senha = new String(txtSenha.getPassword());
 				
 				// Chama a classe de autenticação para validar login e senha

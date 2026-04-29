@@ -13,7 +13,7 @@ public class ProdutoService {
 	// Método responsável por adicionar um novo produto na lista
 	public boolean adicionarProduto(String nome, int quantidade) {
 
-		// Verifica se já existe um produto com o mesmo nome
+		// Verifica se existe um produto com o mesmo nome
 		for (Produto p : listaProdutos) {
 			if (p.getNome().equalsIgnoreCase(nome)) {
 				return false;
