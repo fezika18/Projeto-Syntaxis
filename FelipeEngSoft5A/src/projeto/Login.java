@@ -91,7 +91,7 @@ public class Login extends JFrame {
 		contentPane.add(btnEntrar);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\FeeH\\eclipse-workspace\\FelipeEngSoft5A\\src\\syntaxis_150x100.png"));
+		lblNewLabel.setIcon(new ImageIcon(Login.class.getResource("/projeto/syntaxis_150x100.png")));
 		lblNewLabel.setBounds(136, 5, 150, 106);
 		contentPane.add(lblNewLabel);
 
