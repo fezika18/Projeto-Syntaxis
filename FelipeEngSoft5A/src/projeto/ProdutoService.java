@@ -77,4 +77,29 @@ public class ProdutoService {
 
 		return false;
 	}
+	
+	// Método responsável por alterar o nome de um produto
+	public boolean alterarNomeProduto(int indice, String novoNome) {
+		
+		// Verifica se já existe um produto com o mesmo nome
+		for (Produto p : listaProdutos) {
+			if (p.getNome().equalsIgnoreCase(novoNome)) {
+				return false;
+			}
+		}
+		
+		// Verifica se o índice é válido
+		if (indice >= 0 && indice < listaProdutos.size()) {
+
+			// Busca o produto selecionado
+			Produto p = listaProdutos.get(indice);
+
+			// Altera o nome do produto
+			p.nome = novoNome;
+
+			return true;
+		}
+		
+		return false;
+	}
 }

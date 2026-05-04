@@ -38,7 +38,7 @@ public class Atualizar extends JFrame {
 		// Configurações principais da janela
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Atualizar.class.getResource("/projeto/syntaxis_150x100.png")));
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		setBounds(100, 100, 423, 203);
+		setBounds(100, 100, 423, 231);
 
 		// Criação do painel principal
 		contentPane = new JPanel();
@@ -55,12 +55,12 @@ public class Atualizar extends JFrame {
 		// Texto indicando onde digitar a quantidade
 		JLabel lblQtd = new JLabel("Quantidade:");
 		lblQtd.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblQtd.setBounds(10, 65, 160, 14);
+		lblQtd.setBounds(10, 99, 160, 14);
 		contentPane.add(lblQtd);
 		
 		// Campo para digitar a quantidade
 		textField = new JTextField();
-		textField.setBounds(180, 64, 51, 20);
+		textField.setBounds(180, 98, 51, 20);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
@@ -82,7 +82,7 @@ public class Atualizar extends JFrame {
 				dispose();
 			}
 		});
-		btnCancelar.setBounds(20, 116, 93, 37);
+		btnCancelar.setBounds(20, 144, 93, 37);
 		contentPane.add(btnCancelar);
 		
 		// Botão para adicionar quantidade ao estoque
@@ -119,7 +119,7 @@ public class Atualizar extends JFrame {
 				}
 			}
 		});
-		btnAdicionar.setBounds(150, 116, 93, 37);
+		btnAdicionar.setBounds(150, 144, 93, 37);
 		contentPane.add(btnAdicionar);
 		
 		// Botão para retirar quantidade do estoque
@@ -163,8 +163,50 @@ public class Atualizar extends JFrame {
 				}
 			}
 		});
-		btnRetirar.setBounds(280, 116, 93, 37);
+		btnRetirar.setBounds(280, 144, 93, 37);
 		contentPane.add(btnRetirar);
+		
+		// Botão responsável por alterar o nome do produto
+		JButton btnAlterarNome = new JButton("Alterar Nome");
+		btnAlterarNome.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				// Abre uma caixa para o usuário digitar o novo nome
+				String novoNome = JOptionPane.showInputDialog("Digite o novo nome:");
+
+				// Verifica se o usuário cancelou a operação
+				if (novoNome == null) {
+					return;
+				}
+
+				// Remove espaços extras do texto digitado
+				novoNome = novoNome.trim();
+
+				// Verifica se o campo ficou vazio
+				if (novoNome.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Digite um nome válido!");
+					return;
+				}
+
+				// Chama a tela principal para alterar o nome do produto
+				boolean alterou = opcoes.alterarNomeProduto(indice, novoNome);
+
+				// Verifica se o nome foi alterado com sucesso
+				if (alterou) {
+
+					// Atualiza o nome exibido na tela
+					lblProduto.setText(novoNome);
+
+					JOptionPane.showMessageDialog(null, "Nome alterado com sucesso!");
+				} else {
+
+					// Mensagem exibida caso já exista um produto com o mesmo nome
+					JOptionPane.showMessageDialog(null, "Já existe um produto com esse nome!");
+				}
+			}
+		});
+		btnAlterarNome.setBounds(10, 55, 110, 23);
+		contentPane.add(btnAlterarNome);
 		
 	}
 

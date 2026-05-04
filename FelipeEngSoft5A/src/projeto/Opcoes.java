@@ -95,6 +95,18 @@ public class Opcoes extends JFrame {
 			}
 		});
 	}
+	
+	// Método usado pela tela principal para alterar o nome do produto
+	public boolean alterarNomeProduto(int indice, String novoNome) {
+
+		// Chama a classe de serviço para alterar o nome
+		boolean alterou = service.alterarNomeProduto(indice, novoNome);
+
+		// Atualiza a tabela após a alteração
+		atualizarTabela();
+
+		return alterou;
+	}
 
 	// Construtor da tela principal
 	public Opcoes() {

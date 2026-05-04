@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
@@ -102,9 +103,7 @@ public class Login extends JFrame {
 			        
 			    } else {
 			    	// Se estiver incorreto, abre a tela de erro
-			        UsuarioIncorreto erro = new UsuarioIncorreto();
-			        erro.setVisible(true);
-			    }
+			    	JOptionPane.showMessageDialog(null, "Usuário ou senha incorretos!");			    }
 			}
 		});
 		btnEntrar.setBounds(167, 218, 93, 37);
