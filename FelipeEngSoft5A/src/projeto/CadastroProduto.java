@@ -1,6 +1,5 @@
 package projeto;
 
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -12,91 +11,65 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
-import javax.swing.border.EmptyBorder;
+import java.awt.Color;
+import javax.swing.border.LineBorder;
 
-// Classe responsável pela tela de cadastro de produtos.
-// Nela o usuário informa o nome e a quantidade inicial do produto.
 public class CadastroProduto extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
-	// Painel principal da tela
 	private JPanel contentPane;
 
-	// Campo para digitar o nome do produto
-	private JTextField textField;
+	private JTextField txtNome;
 
-	// Campo para digitar a quantidade do produto
-	private JTextField textField_1;
+	private JTextField txtQtd;
 
-	// Botões da tela
 	private JButton btnCadastrar;
 	private JButton btnCancelar;
 
-	// Referência da tela principal, usada para enviar o produto cadastrado
 	private Opcoes opcoes;
 
-	// Método principal usado para testar esta tela separadamente
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CadastroProduto frame = new CadastroProduto(new Opcoes());
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	// Construtor da tela de cadastro
 	public CadastroProduto(Opcoes opcoes) {
 		this.setOpcoes(opcoes);
 
-		// Configurações principais da janela
 		setIconImage(Toolkit.getDefaultToolkit().getImage(CadastroProduto.class.getResource("/projeto/syntaxis_150x100.png")));
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 420, 198);
 
-		// Criação do painel principal
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		// Texto indicando o campo do nome
 		JLabel lblNome = new JLabel("Nome do Produto:");
 		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNome.setBounds(10, 31, 121, 14);
 		contentPane.add(lblNome);
 
-		// Campo onde o usuário digita o nome do produto
-		textField = new JTextField();
-		textField.setBounds(180, 30, 214, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		txtNome = new JTextField();
+		txtNome.setBounds(180, 30, 214, 20);
+		contentPane.add(txtNome);
+		txtNome.setColumns(10);
 
-		// Texto indicando o campo da quantidade
 		JLabel lblQtd = new JLabel("Quantidade do Produto:");
 		lblQtd.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblQtd.setBounds(10, 67, 160, 14);
 		contentPane.add(lblQtd);
 
-		// Campo onde o usuário digita a quantidade inicial do produto
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(180, 66, 214, 20);
-		contentPane.add(textField_1);
+		txtQtd = new JTextField();
+		txtQtd.setColumns(10);
+		txtQtd.setBounds(180, 66, 214, 20);
+		contentPane.add(txtQtd);
 
-		// Botão responsável por cadastrar o produto
-		btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar = new JButton("➕ Cadastrar");
+		btnCadastrar.setForeground(Color.WHITE);
+		btnCadastrar.setBackground(new Color(47, 111, 237));
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				// Pega os dados digitados pelo usuário
-				String nome = textField.getText().trim();
-				String qtdTexto = textField_1.getText().trim();
+				// Pega os dados digitados pelo usuário, sem espaços.
+				String nome = txtNome.getText().trim();
+				String qtdTexto = txtQtd.getText().trim();
 
 				// Verifica se o nome está vazio
 				if (nome.isEmpty()) {
@@ -125,31 +98,29 @@ public class CadastroProduto extends JFrame {
 					dispose();
 
 				} catch (NumberFormatException erro) {
-					// Mensagem exibida caso o usuário digite letras na quantidade
 					JOptionPane.showMessageDialog(null, "Digite apenas números na quantidade!");
 				}
 			}
 		});
-		btnCadastrar.setBounds(250, 111, 93, 37);
+		btnCadastrar.setBounds(236, 111, 115, 37);
 		contentPane.add(btnCadastrar);
 
-		// Botão para cancelar o cadastro e fechar a tela
-		btnCancelar = new JButton("Cancelar");
+		btnCancelar = new JButton("⌫ Cancelar");
+		btnCancelar.setBackground(Color.WHITE);
+		btnCancelar.setForeground(new Color(255, 0, 0));
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 			}
 		});
-		btnCancelar.setBounds(64, 111, 93, 37);
+		btnCancelar.setBounds(64, 111, 115, 37);
 		contentPane.add(btnCancelar);
 	}
 
-	// Retorna a tela principal
 	public Opcoes getOpcoes() {
 		return opcoes;
 	}
 
-	// Define a tela principal
 	public void setOpcoes(Opcoes opcoes) {
 		this.opcoes = opcoes;
 	}

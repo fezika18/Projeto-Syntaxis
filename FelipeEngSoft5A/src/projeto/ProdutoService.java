@@ -3,24 +3,20 @@ package projeto;
 import java.util.ArrayList;
 import java.util.List;
 
-// Classe responsável por controlar as ações relacionadas aos produtos.
-// Aqui ficam as regras de cadastro, remoção, listagem e movimentação de estoque.
 public class ProdutoService {
 	
-	// Lista que guarda os produtos cadastrados enquanto o sistema está aberto
 	private List<Produto> listaProdutos = new ArrayList<>();
 	
-	// Método responsável por adicionar um novo produto na lista
 	public boolean adicionarProduto(String nome, int quantidade) {
 
 		// Verifica se existe um produto com o mesmo nome
 		for (Produto p : listaProdutos) {
+			//equalsIgnoreCase compara ignorando letras maiúsculas e minúsculas.
 			if (p.getNome().equalsIgnoreCase(nome)) {
 				return false;
 			}
 		}
 
-		// Cria um novo produto e adiciona na lista
 		Produto novo = new Produto(nome, quantidade);
 		listaProdutos.add(novo);
 		return true;
@@ -33,7 +29,6 @@ public class ProdutoService {
 		}
 	}
 
-	// Retorna a lista de produtos cadastrados
 	public List<Produto> listarProdutos() {
 		return listaProdutos;
 	}
@@ -52,7 +47,6 @@ public class ProdutoService {
 			Produto p = listaProdutos.get(indice);
 			p.setQuantidade(p.getQuantidade() + quantidade);
 
-			// Registra a movimentação de entrada no console
 			Movimentacao mov = new Movimentacao(p.getNome(), "Entrada", quantidade);
 			System.out.println(mov.mostrar());
 		}
@@ -67,7 +61,6 @@ public class ProdutoService {
 			if (p.getQuantidade() >= quantidade) {
 				p.setQuantidade(p.getQuantidade() - quantidade);
 
-				// Registra a movimentação de saída no console
 				Movimentacao mov = new Movimentacao(p.getNome(), "Saida", quantidade);
 				System.out.println(mov.mostrar());
 
@@ -78,7 +71,6 @@ public class ProdutoService {
 		return false;
 	}
 	
-	// Método responsável por alterar o nome de um produto
 	public boolean alterarNomeProduto(int indice, String novoNome) {
 		
 		// Verifica se já existe um produto com o mesmo nome
@@ -91,10 +83,8 @@ public class ProdutoService {
 		// Verifica se o índice é válido
 		if (indice >= 0 && indice < listaProdutos.size()) {
 
-			// Busca o produto selecionado
 			Produto p = listaProdutos.get(indice);
 
-			// Altera o nome do produto
 			p.nome = novoNome;
 
 			return true;

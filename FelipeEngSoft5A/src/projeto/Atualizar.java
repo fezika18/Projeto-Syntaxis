@@ -2,7 +2,6 @@ package projeto;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
@@ -11,60 +10,49 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
+import java.awt.Color;
+import javax.swing.border.LineBorder;
 
-// Classe responsável pela tela de atualização do estoque.
-// Nesta tela o usuário pode adicionar ou retirar quantidade de um produto.
 public class Atualizar extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
-	// Painel principal da tela
 	private JPanel contentPane;
 
-	// Campo onde o usuário digita a quantidade que será adicionada ou retirada
-	private JTextField textField;
+	private JTextField txtQtd;
 
-	// Referência da tela principal, usada para atualizar a tabela
 	private Opcoes opcoes;
 
-	// Índice do produto selecionado na tabela
 	private int indice;
 
-	// Construtor da tela Atualizar
 	public Atualizar(Opcoes opcoes, int indice) {
 		this.setOpcoes(opcoes);
 		this.setIndice(indice);
 
-		// Configurações principais da janela
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Atualizar.class.getResource("/projeto/syntaxis_150x100.png")));
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 423, 231);
 
-		// Criação do painel principal
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		// Texto indicando o nome do produto
 		JLabel lblNome = new JLabel("Nome do Produto:");
 		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNome.setBounds(10, 30, 121, 14);
 		contentPane.add(lblNome);
 		
-		// Texto indicando onde digitar a quantidade
 		JLabel lblQtd = new JLabel("Quantidade:");
 		lblQtd.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblQtd.setBounds(10, 99, 160, 14);
 		contentPane.add(lblQtd);
 		
-		// Campo para digitar a quantidade
-		textField = new JTextField();
-		textField.setBounds(180, 98, 51, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		txtQtd = new JTextField();
+		txtQtd.setBounds(180, 98, 51, 20);
+		contentPane.add(txtQtd);
+		txtQtd.setColumns(10);
 		
-		// Label que mostra o nome do produto selecionado
 		JLabel lblProduto = new JLabel("");
 		lblProduto.setBounds(180, 32, 193, 14);
 		contentPane.add(lblProduto);
@@ -75,23 +63,25 @@ public class Atualizar extends JFrame {
 			lblProduto.setText(p.getNome());
 		}
 		
-		// Botão para cancelar a operação e fechar a tela
-		JButton btnCancelar = new JButton("Cancelar");
+		JButton btnCancelar = new JButton("⌫ Cancelar");
+		btnCancelar.setBackground(new Color(255, 255, 255));
+		btnCancelar.setForeground(new Color(255, 0, 0));
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 			}
 		});
-		btnCancelar.setBounds(20, 144, 93, 37);
+		btnCancelar.setBounds(20, 144, 105, 37);
 		contentPane.add(btnCancelar);
 		
-		// Botão para adicionar quantidade ao estoque
-		JButton btnAdicionar = new JButton("Adicionar");
+		JButton btnAdicionar = new JButton("➕ Adicionar");
+		btnAdicionar.setBackground(new Color(47, 111, 237));
+		btnAdicionar.setForeground(new Color(255, 255, 255));
 		btnAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				// Pega o valor digitado no campo de quantidade
-				String qtdTexto = textField.getText().trim();
+				// Pega o valor digitado no campo de quantidade, sem espaços.
+				String qtdTexto = txtQtd.getText().trim();
 
 				// Verifica se o campo está vazio
 				if (qtdTexto.isEmpty()) {
@@ -109,26 +99,25 @@ public class Atualizar extends JFrame {
 						return;
 					}
 
-					// Chama a tela principal para adicionar ao estoque
 					opcoes.adicionarEstoque(indice, quantidade);
 					dispose();
 
 				} catch (NumberFormatException erro) {
-					// Mensagem exibida caso o usuário digite letras no campo
 					JOptionPane.showMessageDialog(null, "Digite apenas números!");
 				}
 			}
 		});
-		btnAdicionar.setBounds(150, 144, 93, 37);
+		btnAdicionar.setBounds(150, 144, 105, 37);
 		contentPane.add(btnAdicionar);
 		
-		// Botão para retirar quantidade do estoque
 		JButton btnRetirar = new JButton("Retirar");
+		btnRetirar.setBackground(new Color(255, 255, 255));
+		btnRetirar.setForeground(new Color(255, 0, 0));
 		btnRetirar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				// Pega o valor digitado no campo de quantidade
-				String qtdTexto = textField.getText().trim();
+				// Pega o valor digitado no campo de quantidade, sem espaços.
+				String qtdTexto = txtQtd.getText().trim();
 
 				// Verifica se o campo está vazio
 				if (qtdTexto.isEmpty()) {
@@ -158,16 +147,16 @@ public class Atualizar extends JFrame {
 					dispose();
 
 				} catch (NumberFormatException erro) {
-					// Mensagem exibida caso o usuário digite letras no campo
 					JOptionPane.showMessageDialog(null, "Digite apenas números!");
 				}
 			}
 		});
-		btnRetirar.setBounds(280, 144, 93, 37);
+		btnRetirar.setBounds(280, 144, 105, 37);
 		contentPane.add(btnRetirar);
 		
-		// Botão responsável por alterar o nome do produto
 		JButton btnAlterarNome = new JButton("Alterar Nome");
+		btnAlterarNome.setForeground(new Color(255, 255, 255));
+		btnAlterarNome.setBackground(new Color(47, 111, 237));
 		btnAlterarNome.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -200,7 +189,6 @@ public class Atualizar extends JFrame {
 					JOptionPane.showMessageDialog(null, "Nome alterado com sucesso!");
 				} else {
 
-					// Mensagem exibida caso já exista um produto com o mesmo nome
 					JOptionPane.showMessageDialog(null, "Já existe um produto com esse nome!");
 				}
 			}
@@ -210,22 +198,18 @@ public class Atualizar extends JFrame {
 		
 	}
 
-	// Retorna a tela principal
 	public Opcoes getOpcoes() {
 		return opcoes;
 	}
 
-	// Define a tela principal
 	public void setOpcoes(Opcoes opcoes) {
 		this.opcoes = opcoes;
 	}
 
-	// Retorna o índice do produto selecionado
 	public int getIndice() {
 		return indice;
 	}
 
-	// Define o índice do produto selecionado
 	public void setIndice(int indice) {
 		this.indice = indice;
 	}
