@@ -78,10 +78,15 @@ public class Opcoes extends JFrame {
 
 		return alterou;
 	}
+	
+	// Retorna o índice real do produto pelo nome
+	public int buscarIndicePorNome(String nome) {
+		return service.buscarIndicePorNome(nome);
+	}
 
 	public Opcoes() {
 		
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Opcoes.class.getResource("/projeto/syntaxis_150x100.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Opcoes.class.getResource("/imagens/syntaxis_150x100.png")));
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 689, 544);
 
@@ -127,7 +132,13 @@ public class Opcoes extends JFrame {
 					return;
 				}
 
-				Remover remover = new Remover(Opcoes.this, linha);
+				// Pega o nome que aparece na linha selecionada da tabela
+				String nomeProduto = tblProdutos.getValueAt(linha, 0).toString();
+
+				// Busca o índice real do produto na lista original
+				int indiceReal = buscarIndicePorNome(nomeProduto);
+
+				Remover remover = new Remover(Opcoes.this, indiceReal);
 				remover.setVisible(true);
 			}
 		});
@@ -145,7 +156,13 @@ public class Opcoes extends JFrame {
 					return;
 				}
 
-				Atualizar atualizar = new Atualizar(Opcoes.this, linha);
+				// Pega o nome que aparece na linha selecionada da tabela
+				String nomeProduto = tblProdutos.getValueAt(linha, 0).toString();
+
+				// Busca o índice real do produto na lista original
+				int indiceReal = buscarIndicePorNome(nomeProduto);
+
+				Atualizar atualizar = new Atualizar(Opcoes.this, indiceReal);
 				atualizar.setVisible(true);
 			}
 		});

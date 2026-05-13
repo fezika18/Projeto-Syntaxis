@@ -29,7 +29,7 @@ public class Atualizar extends JFrame {
 		this.setOpcoes(opcoes);
 		this.setIndice(indice);
 
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Atualizar.class.getResource("/projeto/syntaxis_150x100.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Atualizar.class.getResource("/imagens/syntaxis_150x100.png")));
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 423, 231);
 

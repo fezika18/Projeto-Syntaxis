@@ -42,7 +42,7 @@ public class Login extends JFrame {
 
 	public Login() {
 
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/projeto/syntaxis_150x100.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/imagens/syntaxis_150x100.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 435, 527);
 
@@ -99,7 +99,7 @@ public class Login extends JFrame {
 		
 		JLabel lblLogo = new JLabel("");
 		lblLogo.setBounds(140, 0, 150, 106);
-		lblLogo.setIcon(new ImageIcon(Login.class.getResource("/projeto/syntaxis_150x100.png")));
+		lblLogo.setIcon(new ImageIcon(Login.class.getResource("/imagens/syntaxis_150x100.png")));
 		contentPane.add(lblLogo);
 		
 		JLabel lblTitulo = new JLabel("Bem-Vindo!");

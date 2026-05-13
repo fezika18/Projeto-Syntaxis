@@ -92,4 +92,14 @@ public class ProdutoService {
 		
 		return false;
 	}
+	
+	// Busca o índice real do produto pelo nome
+	public int buscarIndicePorNome(String nome) {
+		for (int i = 0; i < listaProdutos.size(); i++) {
+			if (listaProdutos.get(i).getNome().equalsIgnoreCase(nome)) {
+				return i;
+			}
+		}
+		return -1;
+	}
 }

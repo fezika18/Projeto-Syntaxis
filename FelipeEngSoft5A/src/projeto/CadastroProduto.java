@@ -32,7 +32,7 @@ public class CadastroProduto extends JFrame {
 	public CadastroProduto(Opcoes opcoes) {
 		this.setOpcoes(opcoes);
 
-		setIconImage(Toolkit.getDefaultToolkit().getImage(CadastroProduto.class.getResource("/projeto/syntaxis_150x100.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(CadastroProduto.class.getResource("/imagens/syntaxis_150x100.png")));
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 420, 198);
 
