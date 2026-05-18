@@ -22,11 +22,12 @@ public class Remover extends JFrame {
 	private int indice;
 
 	public Remover(Opcoes opcoes, int indice) {
+		setResizable(false);
 		this.setOpcoes(opcoes);
 		this.setIndice(indice);
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Remover.class.getResource("/imagens/syntaxis_150x100.png")));
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 425, 166);
 
 		contentPane = new JPanel();
@@ -72,6 +73,9 @@ public class Remover extends JFrame {
 		});
 		btnSim.setBounds(253, 64, 93, 37);
 		contentPane.add(btnSim);
+		
+		// Indica o botão que inicia a ação após apertar a tecla enter.
+	    getRootPane().setDefaultButton(btnSim);
 
 	}
 

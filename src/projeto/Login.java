@@ -41,6 +41,7 @@ public class Login extends JFrame {
 	}
 
 	public Login() {
+		setResizable(false);
 
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/imagens/syntaxis_150x100.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -83,7 +84,7 @@ public class Login extends JFrame {
 				String usuario = txtUsuario.getText().trim();
 				String senha = new String(txtSenha.getPassword());
 				
-				// Chama a classe de autenticação para validar login e senha
+				// Chama a classe de autenticação para validar login e senha.
 				boolean acessoLiberado = Autenticacao.autenticar(usuario, senha);
 
 			    if (acessoLiberado) {
@@ -96,6 +97,9 @@ public class Login extends JFrame {
 			}
 		});
 		contentPane.add(btnEntrar);
+		
+		// Indica o botão que inicia a ação após apertar a tecla enter.
+	    getRootPane().setDefaultButton(btnEntrar);
 		
 		JLabel lblLogo = new JLabel("");
 		lblLogo.setBounds(140, 0, 150, 106);

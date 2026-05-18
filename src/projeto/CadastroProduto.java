@@ -30,10 +30,11 @@ public class CadastroProduto extends JFrame {
 	private Opcoes opcoes;
 
 	public CadastroProduto(Opcoes opcoes) {
+		setResizable(false);
 		this.setOpcoes(opcoes);
 
 		setIconImage(Toolkit.getDefaultToolkit().getImage(CadastroProduto.class.getResource("/imagens/syntaxis_150x100.png")));
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 420, 198);
 
 		contentPane = new JPanel();
@@ -104,6 +105,9 @@ public class CadastroProduto extends JFrame {
 		});
 		btnCadastrar.setBounds(236, 111, 115, 37);
 		contentPane.add(btnCadastrar);
+		
+		// Indica o botão que inicia a ação após apertar a tecla enter.
+	    getRootPane().setDefaultButton(btnCadastrar);
 
 		btnCancelar = new JButton("⌫ Cancelar");
 		btnCancelar.setBackground(Color.WHITE);

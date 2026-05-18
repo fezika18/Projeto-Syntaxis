@@ -26,11 +26,12 @@ public class Atualizar extends JFrame {
 	private int indice;
 
 	public Atualizar(Opcoes opcoes, int indice) {
+		setResizable(false);
 		this.setOpcoes(opcoes);
 		this.setIndice(indice);
 
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Atualizar.class.getResource("/imagens/syntaxis_150x100.png")));
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 423, 231);
 
 		contentPane = new JPanel();
@@ -109,6 +110,9 @@ public class Atualizar extends JFrame {
 		});
 		btnAdicionar.setBounds(150, 144, 105, 37);
 		contentPane.add(btnAdicionar);
+		
+		// Indica o botão que inicia a ação após apertar a tecla enter.
+	    getRootPane().setDefaultButton(btnAdicionar);
 		
 		JButton btnRetirar = new JButton("Retirar");
 		btnRetirar.setBackground(new Color(255, 255, 255));
@@ -193,7 +197,7 @@ public class Atualizar extends JFrame {
 				}
 			}
 		});
-		btnAlterarNome.setBounds(10, 55, 110, 23);
+		btnAlterarNome.setBounds(10, 55, 121, 23);
 		contentPane.add(btnAlterarNome);
 		
 	}

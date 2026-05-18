@@ -85,6 +85,7 @@ public class Opcoes extends JFrame {
 	}
 
 	public Opcoes() {
+		setResizable(false);
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Opcoes.class.getResource("/imagens/syntaxis_150x100.png")));
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
